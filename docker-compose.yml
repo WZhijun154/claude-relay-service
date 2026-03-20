@@ -5,8 +5,6 @@ services:
     build: .
     image: weishaw/claude-relay-service:latest
     restart: unless-stopped
-    ports:
-      - "${BIND_HOST:-0.0.0.0}:${PORT:-3000}:3000"
     volumes:
       - ./logs:/app/logs
       - ./data:/app/data
@@ -53,6 +51,7 @@ services:
       - redis
     networks:
       - claude-relay-network
+      - dokploy-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -78,3 +77,5 @@ services:
 networks:
   claude-relay-network:
     driver: bridge
+  dokploy-network:
+    external: true
