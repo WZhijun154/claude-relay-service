@@ -3,7 +3,7 @@ version: '3.8'
 services:
   claude-relay:
     build: .
-    image: weishaw/claude-relay-service:v1.1.304
+    image: weishaw/claude-relay-service:v1.1.307
     restart: unless-stopped
     volumes:
       - ./logs:/app/logs
